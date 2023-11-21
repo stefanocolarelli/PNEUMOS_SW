@@ -1,0 +1,12 @@
+REQUIREMENTS.txt
+
+Python 3.11
+libraries:
+-   numpy
+-   scipy
+-   pythonosc
+-   schedule
+
+PlugData LINUX
+https://plugdata.org/download.html
+https://software.opensuse.org//download.html?project=home:plugdata&package=plugdata
