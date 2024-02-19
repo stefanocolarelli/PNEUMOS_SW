@@ -7,6 +7,8 @@ libraries:
 -   pythonosc
 -   schedule
 
-PlugData LINUX
-https://plugdata.org/download.html
-https://software.opensuse.org//download.html?project=home:plugdata&package=plugdata
+PureData
+libraries:
+-   cyclone
+-   else
+-   comport

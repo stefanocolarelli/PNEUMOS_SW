@@ -1,5 +1,5 @@
-#N canvas 0 44 450 300 12;
-#N canvas 733 172 450 300 openClose 0;
+#N canvas 788 193 450 300 12;
+#N canvas 733 172 875 565 openClose 0;
 #X obj 153 29 inlet;
 #X msg 153 201 1 0 0 0 0;
 #X obj 153 251 unpack 0 0 0 0 0, f 40;
@@ -114,7 +114,7 @@
 #X connect 16 0 11 0;
 #X connect 17 0 12 0;
 #X restore 85 103 pd openClose;
-#N canvas 10 78 1800 1033 osc 0;
+#N canvas 0 47 1800 1033 osc 0;
 #X obj 76 655 outlet~;
 #X obj 202 655 outlet~;
 #X obj 345 655 outlet~;
@@ -212,21 +212,18 @@
 #X obj 477 389 *~;
 #X obj 597 389 *~;
 #N canvas 30 78 1800 1033 env 0;
-#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55
-0 0 0 0 0 1000 0;
+#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1000 0;
 #X obj 76 537 else/envgen~;
 #X msg 76 337 duration \$1;
 #X obj 87 236 random 100;
-#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178 -79060
--54094;
+#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 87 164 pipe 1;
 #X obj 76 289 +;
 #X obj 76 16 inlet;
 #X obj 76 638 outlet~;
 #X obj 146 376 r setEnv;
 #X obj 253 585 sel 0;
-#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178
--79060 -54094;
+#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 26 203 * 0.5;
 #X obj 131 16 r minMax;
 #X obj 131 58 unpack f f;
@@ -263,21 +260,18 @@
 #X obj 139 240 inlet;
 #X obj 160 283 * 2;
 #N canvas 10 78 1800 1033 env 0;
-#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55
-0 0 0 0 0 1000 0;
+#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1000 0;
 #X obj 76 537 else/envgen~;
 #X msg 76 337 duration \$1;
 #X obj 87 236 random 100;
-#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178 -79060
--54094;
+#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 87 164 pipe 1;
 #X obj 76 289 +;
 #X obj 76 16 inlet;
 #X obj 76 638 outlet~;
 #X obj 146 376 r setEnv;
 #X obj 253 585 sel 0;
-#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178
--79060 -54094;
+#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 26 203 * 0.5;
 #X obj 131 16 r minMax;
 #X obj 131 58 unpack f f;
@@ -307,21 +301,18 @@
 #X connect 16 0 8 0;
 #X restore 789 472 pd env;
 #N canvas 10 78 1800 1033 env 0;
-#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55
-0 0 0 0 0 1000 0;
+#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1000 0;
 #X obj 76 537 else/envgen~;
 #X msg 76 337 duration \$1;
 #X obj 87 236 random 100;
-#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178 -79060
--54094;
+#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 87 164 pipe 1;
 #X obj 76 289 +;
 #X obj 76 16 inlet;
 #X obj 76 638 outlet~;
 #X obj 146 376 r setEnv;
 #X obj 253 585 sel 0;
-#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178
--79060 -54094;
+#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 26 203 * 0.5;
 #X obj 131 16 r minMax;
 #X obj 131 58 unpack f f;
@@ -351,21 +342,18 @@
 #X connect 16 0 8 0;
 #X restore 864 472 pd env;
 #N canvas 10 78 1800 1033 env 0;
-#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55
-0 0 0 0 0 1000 0;
+#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1000 0;
 #X obj 76 537 else/envgen~;
 #X msg 76 337 duration \$1;
 #X obj 87 236 random 100;
-#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178 -79060
--54094;
+#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 87 164 pipe 1;
 #X obj 76 289 +;
 #X obj 76 16 inlet;
 #X obj 76 638 outlet~;
 #X obj 146 376 r setEnv;
 #X obj 253 585 sel 0;
-#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178
--79060 -54094;
+#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 26 203 * 0.5;
 #X obj 131 16 r minMax;
 #X obj 131 58 unpack f f;
@@ -395,21 +383,18 @@
 #X connect 16 0 8 0;
 #X restore 940 472 pd env;
 #N canvas 10 78 1800 1033 env 0;
-#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55
-0 0 0 0 0 1000 0;
+#X obj 76 419 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1000 0;
 #X obj 76 537 else/envgen~;
 #X msg 76 337 duration \$1;
 #X obj 87 236 random 100;
-#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178 -79060
--54094;
+#X obj 87 198 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 87 164 pipe 1;
 #X obj 76 289 +;
 #X obj 76 16 inlet;
 #X obj 76 638 outlet~;
 #X obj 146 376 r setEnv;
 #X obj 253 585 sel 0;
-#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 -237178
--79060 -54094;
+#X obj 253 633 bng 25 250 50 0 empty empty empty 17 7 0 10 #e4e4e4 #4c4c4c #343434;
 #X obj 26 203 * 0.5;
 #X obj 131 16 r minMax;
 #X obj 131 58 unpack f f;
@@ -440,11 +425,11 @@
 #X restore 1012 472 pd env;
 #X obj 76 161 cyclone/rampsmooth~ 44100 44100;
 #X obj 76 323 cyclone/scale~ 0 10 150 300;
-#X obj 76 472 osc~ 100;
-#X obj 202 472 osc~ 200;
-#X obj 345 472 osc~ 200;
-#X obj 477 472 osc~ 200;
-#X obj 588 475 osc~ 200;
+#X obj 77 472 noise_reson;
+#X obj 202 473 noise_reson;
+#X obj 345 474 noise_reson;
+#X obj 476 473 noise_reson;
+#X obj 601 473 noise_reson;
 #X connect 5 0 6 0;
 #X connect 5 0 9 0;
 #X connect 5 0 18 0;

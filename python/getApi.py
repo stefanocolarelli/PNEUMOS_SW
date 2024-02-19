@@ -7,7 +7,7 @@ import time
 from pythonosc import udp_client
 import json
 
-def send_osc_message(distances):
+def send_osc_distances(distances):
     try:
         client = udp_client.SimpleUDPClient("127.0.0.1", 12345)  # Indirizzo IP e porta OSC del destinatario
         # Invia i valori come messaggio OSC
@@ -16,7 +16,13 @@ def send_osc_message(distances):
     except ConnectionRefusedError:
         print("Errore: Connessione OSC rifiutata. Assicurati che il server OSC sia in esecuzione.")
 
-
+def send_osc_breath(breath):
+    try:
+        client = udp_client.SimpleUDPClient("127.0.0.1", 12345)  # Indirizzo IP e porta OSC del destinatario
+        # Invia i valori come messaggio OSC   
+        client.send_message("/breath", breath)
+    except ConnectionRefusedError:
+        print("Errore: Connessione OSC rifiutata. Assicurati che il server OSC sia in esecuzione.")
 
 def get_normalized_values():
     url = "https://apidare.comune.ravenna.it/dareairsamples/10"
@@ -148,7 +154,12 @@ def calculate_distances():
     for i, distance in enumerate(distances):
         print(f"Punto {i + 1}: {distance:.4f}")
     
-    send_osc_message(distances)
+    send_osc_distances(distances)
+    min_value = min(distances)
+    min_index = distances.index(min_value)
+    print("Funzione di respiro arduino:", min_index)
+    send_osc_breath(min_index)
+
     # Serializing json
     json_object = json.dumps(distances, indent=4)
     
