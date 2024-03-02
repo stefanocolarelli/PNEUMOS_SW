@@ -25,12 +25,12 @@ def send_osc_breath(breath):
         print("Errore: Connessione OSC rifiutata. Assicurati che il server OSC sia in esecuzione.")
 
 def get_normalized_values():
-    url = "https://apidare.comune.ravenna.it/dareairsamples/10"
+    url = "https://apidare.comune.ravenna.it/dareairsamples/60"
     data = {}
 
     # Dati per la normalizzazione
     normalized_ranges = {
-        'PM2.5': {'min': 0, 'max': 50},
+        'PM2': {'min': 0, 'max': 50},
         'PM10': {'min': 0, 'max': 100},
         'NO2': {'min': 0, 'max': 300},
         'SO2': {'min': 0, 'max': 500},
@@ -43,15 +43,21 @@ def get_normalized_values():
         'NO2': 1880,
         'CO': 1.145,
         'PM10': 1,
-        'PM2.5': 1
+        'PM2': 1
     }
     
     try:
         response = requests.get(url)
         data = response.json()  # Converti la risposta in formato JSON
+        # Writing to sample.json
+        with open("lastworking.json", "w") as outfile:
+            outfile.write(json.dumps(data, indent = 4))
 
     except requests.exceptions.RequestException as e:
         print("Errore durante la richiesta API:", e)
+        print('Verrano utilizzati gli ultimi dati rilevati validi')
+        with open('lastworking2.json', 'r') as file:
+            data = json.load(file)
 
     # Dizionari vuoti per ogni stazione
     station_dare1 = {}
@@ -72,14 +78,44 @@ def get_normalized_values():
                 station_dare3 = entry
                 station_dare3['latest_timestamp'] = entry['TimeStamp']
 
+    average_values = {'PM2':0, 'PM10':0, 'NO2':0, 'SO2':0, 'CO':0}
+    stationdatas = [station_dare1, station_dare2, station_dare3]
+    error = True
+
+    idx = 0
     # Calcola la media dei valori per ogni parametro
-    average_values = {
-        'PM2.5': (float(station_dare1['PM2'].split()[0]) + float(station_dare2['PM2'].split()[0]) + float(station_dare3['PM2'].split()[0])) / 3,
-        'PM10': (float(station_dare1['PM10'].split()[0]) + float(station_dare2['PM10'].split()[0]) + float(station_dare3['PM10'].split()[0])) / 3,
-        'NO2': (float(station_dare1['NO2'].split()[0]) + float(station_dare2['NO2'].split()[0]) + float(station_dare3['NO2'].split()[0])) / 3,
-        'SO2': (float(station_dare1['SO2'].split()[0]) + float(station_dare2['SO2'].split()[0]) + float(station_dare3['SO2'].split()[0])) / 3,
-        'CO': (float(station_dare1['CO'].split()[0]) + float(station_dare2['CO'].split()[0]) + float(station_dare3['CO'].split()[0])) / 3
-    }
+    for i in stationdatas:
+        idx += 1
+        for key in average_values.keys():
+            if i != {}:
+                average_values[key] += float(i[key].split()[0])/3
+                error = False
+            else:
+                print(f"MeteoStationDARE{idx} is missing")
+                break
+    
+    if error:
+        print('Connesso ma con nessun dato ricevuto, verrano utilizzati gli ultimi dati rilevati validi')
+        with open('lastworking.json', 'r') as file:
+            data = json.load(file)
+        for entry in data:
+            if entry['StationName'] == 'MeteoStationDARE1':
+                if 'latest_timestamp' not in station_dare1 or entry['TimeStamp'] > station_dare1['latest_timestamp']:
+                    station_dare1 = entry
+                    station_dare1['latest_timestamp'] = entry['TimeStamp']
+            elif entry['StationName'] == 'MeteoStationDARE2':
+                if 'latest_timestamp' not in station_dare2 or entry['TimeStamp'] > station_dare2['latest_timestamp']:
+                    station_dare2 = entry
+                    station_dare2['latest_timestamp'] = entry['TimeStamp']
+            elif entry['StationName'] == 'MeteoStationDARE3':
+                if 'latest_timestamp' not in station_dare3 or entry['TimeStamp'] > station_dare3['latest_timestamp']:
+                    station_dare3 = entry
+                    station_dare3['latest_timestamp'] = entry['TimeStamp']
+        stationdatas = [station_dare1, station_dare2, station_dare3]
+        for i in stationdatas:
+            for key in average_values.keys():
+                if i != {}:
+                    average_values[key] += float(i[key].split()[0])/3
 
     # Converte l'unità di misura
     converted_values = {}
@@ -101,7 +137,7 @@ def calculate_distances():
     
     # Punto soglie per ciascun inquinante
     soglie = {
-        'PM2.5': [10, 15, 25, 37.5, 50],
+        'PM2': [10, 15, 25, 37.5, 50],
         'PM10': [20, 45, 50, 75, 100],
         'NO2': [50, 120, 200, 240, 300],
         'SO2': [40, 50, 125, 350, 500],
@@ -109,7 +145,7 @@ def calculate_distances():
     }
     
     normalized_ranges = {
-        'PM2.5': {'min': 0, 'max': 50},
+        'PM2': {'min': 0, 'max': 50},
         'PM10': {'min': 0, 'max': 100},
         'NO2': {'min': 0, 'max': 300},
         'SO2': {'min': 0, 'max': 500},
@@ -128,7 +164,7 @@ def calculate_distances():
         
     soglie_points = []
     for n in range(5):
-        pn = [normalized_soglie['PM2.5'][n], normalized_soglie['PM10'][n], normalized_soglie['NO2'][n], normalized_soglie['SO2'][n], normalized_soglie['CO'][n]]
+        pn = [normalized_soglie['PM2'][n], normalized_soglie['PM10'][n], normalized_soglie['NO2'][n], normalized_soglie['SO2'][n], normalized_soglie['CO'][n]]
         soglie_points.append(pn)
 
     # Converte la lista di punti in un np.array
@@ -136,7 +172,7 @@ def calculate_distances():
     #print(soglie_points)
     # Punto di riferimento
     reference_point = np.array([
-        normalized_values['PM2.5'],
+        normalized_values['PM2'],
         normalized_values['PM10'],
         normalized_values['NO2'],
         normalized_values['SO2'],
