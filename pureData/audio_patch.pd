@@ -1,4 +1,4 @@
-#N canvas -56 44 1447 1035 12;
+#N canvas 0 44 1447 1035 12;
 #X floatatom 76 483 9 0 0 0 - - - 0;
 #X floatatom 328 483 9 0 0 0 - - - 0;
 #X floatatom 580 485 9 0 0 0 - - - 0;
@@ -87,7 +87,7 @@
 #X obj 617 22 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
 #X msg 362 380 7;
 #X obj 343 292 s breathVal;
-#X msg 306 69 0.001;
+#X msg 306 69 2.5;
 #X connect 0 0 39 0;
 #X connect 1 0 40 0;
 #X connect 2 0 41 0;
