@@ -156,6 +156,8 @@ def calculate_distances():
     send_osc_distances(distances)
     min_value = min(distances)
     min_index = distances.index(min_value)
+    if min_value > 2:
+        min_index = 5
     print("Funzione di respiro arduino:", min_index)
     send_osc_breath(min_index)
 
