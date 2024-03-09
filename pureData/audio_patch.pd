@@ -1,4 +1,4 @@
-#N canvas 0 44 1447 1035 12;
+#N canvas 444 44 1447 1035 12;
 #X floatatom 76 483 9 0 0 0 - - - 0;
 #X floatatom 328 483 9 0 0 0 - - - 0;
 #X floatatom 580 485 9 0 0 0 - - - 0;
@@ -81,13 +81,13 @@
 #X connect 8 0 10 0;
 #X connect 9 0 5 0;
 #X connect 10 0 7 0;
-#X restore 302 139 pd ms2samps;
+#X restore 320 143 pd ms2samps;
 #X msg 615 335 \; pd dsp 1;
 #X obj 612 294 loadbang;
 #X obj 617 22 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
 #X msg 362 380 7;
 #X obj 343 292 s breathVal;
-#X msg 306 69 2.5;
+#X msg 306 69 15;
 #X connect 0 0 39 0;
 #X connect 1 0 40 0;
 #X connect 2 0 41 0;
