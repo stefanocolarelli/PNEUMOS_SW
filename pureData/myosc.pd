@@ -35,7 +35,7 @@
 #X obj 283 421 outlet~;
 #X obj 348 421 outlet~;
 #X obj 414 421 outlet~;
-#N canvas 733 172 685 300 route 1;
+#N canvas 733 172 685 300 route 0;
 #X obj 153 91 int;
 #X obj 153 29 inlet;
 #X obj 153 224 outlet;
@@ -176,7 +176,7 @@
 #X connect 16 0 11 0;
 #X connect 17 0 1 0;
 #X restore 85 103 pd openClose;
-#N canvas 0 46 1800 1033 osc 0;
+#N canvas 150 148 1800 1033 osc 0;
 #X obj 76 655 outlet~;
 #X obj 202 655 outlet~;
 #X obj 345 655 outlet~;
@@ -184,7 +184,7 @@
 #X obj 597 655 outlet~;
 #X obj 76 16 inlet;
 #X obj 159 16 r rampSpeed;
-#N canvas 16 138 1184 607 route 0;
+#N canvas 317 137 1184 607 route 0;
 #X obj 153 91 int;
 #X obj 153 289 outlet;
 #X msg 153 207 2 3 4 5;
@@ -219,7 +219,7 @@
 #X obj 477 419 *~;
 #X obj 597 419 *~;
 #N canvas 0 46 1800 1033 env 0;
-#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1749.12 1 5379.35 1 1677.18 0 14885.9 0;
+#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 4.57758 1 14.0776 1 4.38888 0 38.9559 0;
 #X obj 63 739 else/envgen~;
 #X msg 63 439 duration \$1;
 #X obj 74 338 random 100;
@@ -390,7 +390,7 @@
 #X connect 3 0 1 0;
 #X restore 614 274 pd i;
 #N canvas 0 46 1800 1033 env 0;
-#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1063.69 1 3271.35 1 1019.95 0 9052.57 0;
+#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 5.98041 1 18.3918 1 5.73407 0 50.8937 0;
 #X obj 63 739 else/envgen~;
 #X msg 63 439 duration \$1;
 #X obj 74 338 random 100;
@@ -435,7 +435,7 @@
 #X connect 18 0 17 0;
 #X restore 789 472 pd env;
 #N canvas 0 46 1800 1033 env 0;
-#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 2544.77 1 7826.37 1 2440.1 0 21657.3 0;
+#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 6.42342 1 19.7541 1 6.15862 0 54.6638 0;
 #X obj 63 739 else/envgen~;
 #X msg 63 439 duration \$1;
 #X obj 74 338 random 100;
@@ -480,7 +480,7 @@
 #X connect 18 0 17 0;
 #X restore 853 470 pd env;
 #N canvas 0 46 1800 1033 env 0;
-#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1708.29 1 5253.79 1 1638.05 0 14538.4 0;
+#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 4.72527 1 14.5319 1 4.53032 0 40.2125 0;
 #X obj 63 739 else/envgen~;
 #X msg 63 439 duration \$1;
 #X obj 74 338 random 100;
@@ -525,7 +525,7 @@
 #X connect 18 0 17 0;
 #X restore 919 473 pd env;
 #N canvas 0 46 1800 1033 env 0;
-#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 1885.11 1 5797.6 1 1807.61 0 16043.2 0;
+#X obj 63 521 function 200 100 empty empty 0 1 228 228 228 55 55 55 0 0 0 0 0 4.35607 1 13.3964 1 4.17666 0 37.0709 0;
 #X obj 63 739 else/envgen~;
 #X msg 63 439 duration \$1;
 #X obj 74 338 random 100;
@@ -632,7 +632,7 @@
 #X connect 36 0 18 1;
 #X connect 37 0 27 0;
 #X restore 213 103 pd osc;
-#N canvas 971 382 799 639 sum 1;
+#N canvas 971 382 799 639 sum 0;
 #X obj 227 255 *~;
 #X obj 227 147 inlet~;
 #X obj 238 188 inlet~;
