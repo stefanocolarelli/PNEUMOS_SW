@@ -30,10 +30,10 @@ def get_normalized_values():
 
     # Dati per la normalizzazione
     normalized_ranges = {
-        'PM2': {'min': 0, 'max': 50},
-        'PM10': {'min': 0, 'max': 100},
-        'NO2': {'min': 0, 'max': 300},
-        'SO2': {'min': 0, 'max': 500},
+        'PM2': {'min': 0, 'max': 75},
+        'PM10': {'min': 0, 'max': 150},
+        'NO2': {'min': 0, 'max': 340},
+        'SO2': {'min': 0, 'max': 750},
         'CO': {'min': 0, 'max': 100}
     }
 
@@ -137,18 +137,18 @@ def calculate_distances():
     
     # Punto soglie per ciascun inquinante
     soglie = {
-        'PM2': [10, 15, 25, 37.5, 50],
-        'PM10': [20, 45, 50, 75, 100],
-        'NO2': [50, 120, 200, 240, 300],
-        'SO2': [40, 50, 125, 350, 500],
+        'PM2': [10, 20, 25, 50, 75],
+        'PM10': [20, 40, 50, 100, 150],
+        'NO2': [40, 90, 120, 230, 340],
+        'SO2': [100, 200, 350, 500, 750],
         'CO': [4, 7, 10, 35, 100]
     }
     
     normalized_ranges = {
-        'PM2': {'min': 0, 'max': 50},
-        'PM10': {'min': 0, 'max': 100},
-        'NO2': {'min': 0, 'max': 300},
-        'SO2': {'min': 0, 'max': 500},
+        'PM2': {'min': 0, 'max': 75},
+        'PM10': {'min': 0, 'max': 150},
+        'NO2': {'min': 0, 'max': 340},
+        'SO2': {'min': 0, 'max': 750},
         'CO': {'min': 0, 'max': 100}
     }
     
