@@ -19,6 +19,7 @@ libraries:
 -   scipy
 -   pythonosc
 -   schedule
+-   requests
 
 PureData
 libraries:
