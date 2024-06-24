@@ -78,21 +78,40 @@ def get_normalized_values():
                 station_dare3 = entry
                 station_dare3['latest_timestamp'] = entry['TimeStamp']
 
-    average_values = {'PM2':0, 'PM10':0, 'NO2':0, 'SO2':0, 'CO':0}
+    average_values = {'PM2': 0, 'PM10': 0, 'NO2': 0, 'SO2': 0, 'CO': 0}
     stationdatas = [station_dare1, station_dare2, station_dare3]
     error = True
+    print(f"TimeStamp1: {(station_dare1['TimeStamp'].split()[0])}")
+
+    # Utilizza un dizionario per tenere traccia del conteggio dei valori positivi per ciascun inquinante
+    count_values = {'PM2': 0, 'PM10': 0, 'NO2': 0, 'SO2': 0, 'CO': 0}
 
     idx = 0
-    # Calcola la media dei valori per ogni parametro
-    for i in stationdatas:
+    # Calcola la somma dei valori per ogni parametro, solo se non negativi
+    for station_data in stationdatas:
         idx += 1
-        for key in average_values.keys():
-            if i != {}:
-                average_values[key] += float(i[key].split()[0])/3
-                error = False
-            else:
-                print(f"MeteoStationDARE{idx} is missing")
-                break
+        if station_data != {}:
+            for key in average_values.keys():
+                value = float(station_data[key].split()[0])
+                # if value >= 0:  # Considera solo valori non negativi
+                if value > 0:  # Considera solo valori positivi
+                    average_values[key] += value
+                    count_values[key] += 1
+                    error = False
+        else:
+            print(f"MeteoStationDARE{idx} is missing")
+
+    # Calcola la media considerando il numero effettivo di contributi positivi
+    for key in average_values.keys():
+        if count_values[key] > 0:
+            average_values[key] /= count_values[key]
+        else:
+            average_values[key] = 0  # Imposta il valore a 0 se non ci sono dati validi
+
+    # Stampa i risultati
+    print("Average Values:")
+    for key, value in average_values.items():
+        print(f"{key}: {value}")
     
     if error:
         print('Connesso ma con nessun dato ricevuto, verrano utilizzati gli ultimi dati rilevati validi')
